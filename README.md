@@ -28,7 +28,7 @@
   * ROUTING - LAZY LOAD
   * REACTIVE FORM
 * RXJS
-  * [希望是最淺顯易懂的 RxJS 教學]([https://blog.techbridge.cc/2017/12/08/rxjs/)
+  * [希望是最淺顯易懂的 RxJS 教學](https://blog.techbridge.cc/2017/12/08/rxjs/)
   * [30 天精通 RxJS (01)：認識 RxJS ](https://ithelp.ithome.com.tw/articles/10186104)
   * [Marble Diagram](https://rxmarbles.com/)
 
