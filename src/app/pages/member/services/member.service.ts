@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { RestService } from 'src/app/core/services/rest.service';
-import { Member } from 'src/app/core/models/member.model';
-import { Observable } from 'rxjs';
-import { Pager } from 'src/app/core/models/pager.model';
-import { QueryOption } from 'src/app/core/models/query-option.model';
+import { Member } from 'src/app/shared/models/member.model';
+import { Pager } from 'src/app/shared/models/pager.model';
+import { QueryOption } from 'src/app/shared/models/query-option.model';
 import { MemberServicesModule } from '../member-services.module';
 
 @Injectable({

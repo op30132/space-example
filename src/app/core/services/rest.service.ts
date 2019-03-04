@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { AuthTokenService } from './auth-token.service';
 import { Observable } from 'rxjs';
+
+import { AuthTokenService } from './auth-token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,9 @@ export class RestService {
   }
 
   httpPut<T>(url: string, payload?: any) {
-    return this.http.put(url, payload);
+    return this.http.put(url, payload, {
+      headers: this.getRequestHeaders()
+    });
   }
 
   httpPost<T>(url: string, payload: any) {

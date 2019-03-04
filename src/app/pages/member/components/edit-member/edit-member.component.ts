@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Member } from 'src/app/core/models/member.model';
-import { MemberService } from '../../services/member.service';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-member',

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 
-import { Member } from '../models/member.model';
+import { Member } from '../../shared/models/member.model';
 
 @Injectable({
   providedIn: 'root'

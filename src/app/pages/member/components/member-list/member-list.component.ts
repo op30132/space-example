@@ -1,9 +1,10 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { MemberService } from '../../services/member.service';
 import { Observable } from 'rxjs';
-import { Pager } from 'src/app/core/models/pager.model';
-import { Member } from 'src/app/core/models/member.model';
 import { tap } from 'rxjs/operators';
+
+import { MemberService } from '../../services/member.service';
+import { Pager } from 'src/app/shared/models/pager.model';
+import { Member } from 'src/app/shared/models/member.model';
 
 @Component({
   selector: 'mb-member-list',

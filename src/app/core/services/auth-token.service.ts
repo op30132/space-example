@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AuthToken } from '../models/auth-token.model';
+import { AuthToken } from '../../shared/models/auth-token.model';
 
 @Injectable({
   providedIn: 'root'

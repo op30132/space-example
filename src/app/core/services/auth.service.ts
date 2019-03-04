@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './rest.service';
-import { Credential } from '../models/credential.model';
 import { Observable } from 'rxjs';
-
-import { AuthToken } from '../models/auth-token.model';
-import { AuthTokenService } from './auth-token.service';
 import { tap } from 'rxjs/operators';
+
+
+import { Credential } from '../../shared/models/credential.model';
+import { AuthToken } from '../../shared/models/auth-token.model';
+import { AuthTokenService } from './auth-token.service';
 
 @Injectable({
   providedIn: 'root'

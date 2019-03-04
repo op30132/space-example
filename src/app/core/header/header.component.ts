@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from '../services/user-profile.service';
-import { Member } from '../models/member.model';
+import { Member } from '../../shared/models/member.model';
 
 @Component({
   selector: 'app-header',
