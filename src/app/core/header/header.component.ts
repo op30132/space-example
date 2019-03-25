@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserProfileService } from '../services/user-profile.service';
 import { Member } from '../../shared/models/member.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +11,10 @@ export class HeaderComponent implements OnInit {
 
   profile: Member;
 
-  constructor(private profileService: UserProfileService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.profile = this.profileService.userProfile;
+    this.profile = this.authService.userProfile;
   }
 
 }
