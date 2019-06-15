@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
 import { AuthTokenService } from './auth-token.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +23,11 @@ export class RestService {
     });
   }
 
-  httpPost<T>(url: string, payload: any) {
-    const contentType = 'application/x-www-form-urlencoded';
+  httpPost<T>(url: string, payload: any, contentType?: any) {
+
+    if (!contentType) {
+      contentType = 'application/json';
+    }
 
     return this.http.post<T>(url,
       this.getRequestayload(payload, contentType), {

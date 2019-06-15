@@ -28,7 +28,7 @@ export class AuthService {
    * @param credential 登入認證資訊
    */
   authentication(credential: Credential): Observable<any> {
-    return this.restService.httpPost<AuthToken>(AuthService.AUTHENTICATION_URL, credential)
+    return this.restService.httpPost<AuthToken>(AuthService.AUTHENTICATION_URL, credential, 'application/x-www-form-urlencoded')
       .pipe(
         tap(resp => this.tokenService.authToekn = resp),
         switchMap(() => this.getUserProfile())

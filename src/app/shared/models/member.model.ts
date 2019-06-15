@@ -12,4 +12,6 @@ export class Member {
   name?: string;
   status?: string;
   type?: string;
+  cardNo?: string;
+  password?: string;
 }

@@ -7,16 +7,19 @@ import { Pager } from 'src/app/shared/models/pager.model';
 import { Member } from 'src/app/shared/models/member.model';
 
 @Component({
-  selector: 'mb-member-list',
+  selector: 'app-member-list',
   templateUrl: './member-list.component.html',
   styleUrls: ['./member-list.component.css']
 })
 export class MemberListComponent implements OnInit {
 
+  // 查詢條件model
   queryMember: Member = new Member();
+  // 分頁model
   queryPager: Pager<Member> = new Pager();
 
   memberList$: Observable<Pager<Member>>;
+
   constructor(private memberService: MemberService) { }
 
   ngOnInit() {
