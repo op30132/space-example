@@ -56,8 +56,9 @@
    3. 送出儲存請求後，需提示成功與失敗，並於儲存成功後將畫面導向帳號清單畫面
    4. 提供刪除功能，刪除前需要詢問使用者是否確定要刪除，使用者點擊確定後才可真正刪除
    5. 額外提供密碼變更功能(需與帳號維護功能分開)，需檢查密碼是否一致，不可使用空密碼[測試網址](https://space.hyweb.com.tw/#/)
-   6. (optional) 抓資料或更新資料時，嘗試加入 loading或是有助於改善UX之效果。
-   7. (optional)以Reactive Form實做各功能
+   6. 需檢查使用者輸入帳號是否為合法Email格式
+   7. (optional) 抓資料或更新資料時，嘗試加入 loading或是有助於改善UX之效果。
+   8. (optional)以Reactive Form實做各功能
 
 3. 帳號新增
 
@@ -65,18 +66,18 @@
    2. 需檢查欲新增之帳號是否已存在(搭配https://spaceadmin.hyweb.com.tw/rest/member/admin/accounts/pager 來檢查)
    3. 需要對輸入欄位做驗證，帳號、姓名、密碼與狀態必填
    4. 新增成功後，返回列表頁，失敗時需要提示使用者新增失敗
-   5. (optional) 避免使用者連續輸入帳號時，送出過多的檢查請求。
-   6. (optional) 抓資料或更新資料時，嘗試加入 loading或是有助於改善UX之效果。
-   7. (optional)以Reactive Form實做各功能
+   5. 需檢查使用者輸入帳號是否為合法Email格式
+   6. (optional) 避免使用者連續輸入帳號時，送出過多的檢查請求。
+   7. (optional) 抓資料或更新資料時，嘗試加入 loading或是有助於改善UX之效果。
+   8. (optional)以Reactive Form實做各功能
 4. 登入功能
 
    1. 透過Angular Reactive Form實做
    2. 未登入成功前無法進入會員帳號頁面。在未登入時透過輸入URL繞過Login機制，需要將畫面重導回登入頁。(關鍵字：CanActivate、CanActivateChild)
    3. 帳號與密碼為必填，未填寫完整前必須將登入按鈕 disable。
-   4. 使用者點擊過的輸入欄位，有違反驗證規則的情況必須提示使用者，呈現於畫面上
-   5. 需檢查使用者輸入帳號是否為合法Email格式
-   6. 登入失敗需要提示使用者
-   7. (optional)若使用者已登入過，則不再進入登入畫面
+   4. 使用者點擊過的輸入欄位，有違反驗證規則的情況必須提示使用者，呈現於畫面上 
+   5. 登入失敗需要提示使用者
+   6. (optional)若使用者已登入過，則不再進入登入畫面
 
 5. 公告列表 - [參考畫面](https://spaceadmin.hyweb.com.tw/announcement/#/listAnnouncements)
    1. 取得公告列表，並呈現標題、建立日期、有效日期與狀態欄位
