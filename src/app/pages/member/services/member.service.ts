@@ -36,6 +36,7 @@ export class MemberService {
    * 以帳號 uuid 查詢資訊
    * @param uuid 欲查詢帳號之uuid
    */
+  //用在帳號編輯
   getMemberById(uuid: string): Observable<Member> {
     return this.restService.httpGet<Member>(`${MemberService.BASE_URL}/${uuid}`);
   }

@@ -14,4 +14,5 @@ export class Member {
   type?: string;
   cardNo?: string;
   password?: string;
+  contactMobileTel?: string;
 }

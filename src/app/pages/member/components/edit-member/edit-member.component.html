@@ -3,11 +3,56 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>人員帳號維護 <small></small></h2>
-        <div class="clearfix"></div>
-        新增後續功能與畫面...
+        <h2>帳號設定</h2>
       </div>
+      <form *ngIf="member$ | async as member; else loading" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="">帳號
+                <input type="text" readonly class="form-control-plaintext"  formControlName="account">
+              </label>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="">建立日期
+                <input type="text" readonly class="form-control-plaintext"  formControlName="createDate">
+              </label>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="">最後修改日期
+                <input type="text" readonly class="form-control-plaintext"  formControlName="lastModifyDate">
+              </label>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="inputState">狀態</label>
+              <select id="inputState" class="form-control" formControlName="status">
+                <option ng-selected value="Y">啟用</option>
+                <option value="N">停用</option>
+                <option value="D">註銷</option>
+              </select>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="">姓名
+                <input type="text" class="form-control"  formControlName="name">
+              </label>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="">email
+                <input type="email" class="form-control"  formControlName="email">
+              </label>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="">連絡電話
+                <input type="number" class="form-control"  formControlName="contactMobileTel">
+              </label>
+            </div>
 
+
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <ng-template #loading>
+            Loading User...
+          </ng-template>
     </div>
   </div>
 
