@@ -6,53 +6,73 @@
         <h2>帳號設定</h2>
       </div>
       <form *ngIf="member$ | async as member; else loading" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-          <div class="form-row">
-            <div class="form-group col-md-3">
-              <label for="">帳號
-                <input type="text" readonly class="form-control-plaintext"  formControlName="account">
-              </label>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="">帳號
+              <input type="text" readonly class="form-control-plaintext" formControlName="account">
+            </label>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="">建立日期
+              <input type="text" readonly class="form-control-plaintext" formControlName="createDate">
+            </label>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="">最後修改日期
+              <input type="text" readonly class="form-control-plaintext" formControlName="lastModifyDate">
+            </label>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputState">狀態</label>
+            <select id="inputState" class="form-control" formControlName="status">
+              <option ng-selected value="Y">啟用</option>
+              <option value="N">停用</option>
+              <option value="D">註銷</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="">姓名
+              <input type="text" class="form-control" formControlName="name"
+                [class.red]="profileForm.get('name').invalid && profileForm.get('name').touched">
+            </label>
+            <div
+              *ngIf="profileForm.get('name').invalid && (profileForm.get('name').dirty || profileForm.get('name').touched)"
+              class="red">
+              姓名為必填欄位
             </div>
-            <div class="form-group col-md-3">
-              <label for="">建立日期
-                <input type="text" readonly class="form-control-plaintext"  formControlName="createDate">
-              </label>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="">email
+              <input type="email" class="form-control" formControlName="email" (blur)="checkEmail()"
+                [class.red]="profileForm.get('email').invalid && profileForm.get('email').touched">
+            </label>
+            <div
+              *ngIf="profileForm.get('email').invalid && (profileForm.get('email').dirty || profileForm.get('email').touched)"
+              class="red">
+              信箱為必填欄位
             </div>
-            <div class="form-group col-md-3">
-              <label for="">最後修改日期
-                <input type="text" readonly class="form-control-plaintext"  formControlName="lastModifyDate">
-              </label>
+            <div class="red">
+              {{emailMsg}}
             </div>
-            <div class="form-group col-md-3">
-              <label for="inputState">狀態</label>
-              <select id="inputState" class="form-control" formControlName="status">
-                <option ng-selected value="Y">啟用</option>
-                <option value="N">停用</option>
-                <option value="D">註銷</option>
-              </select>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="">姓名
-                <input type="text" class="form-control"  formControlName="name">
-              </label>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="">email
-                <input type="email" class="form-control"  formControlName="email">
-              </label>
-            </div>
-            <div class="form-group col-md-3">
-              <label for="">連絡電話
-                <input type="number" class="form-control"  formControlName="contactMobileTel">
-              </label>
-            </div>
-
-
+          </div>
+          <div class="form-group col-md-3">
+            <label for="">連絡電話
+              <input type="number" class="form-control" formControlName="contactMobileTel">
+            </label>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-        <ng-template #loading>
-            Loading User...
-          </ng-template>
+        <button type="submit" class="btn btn-primary">送出</button>
+        <button type="button" class="btn btn-primary" routerLink="/pages/member">返回</button>
+        <button type="button" class="btn btn-primary">刪除</button>
+        <button type="button" class="btn btn-primary" (click)="passwordEdit()">變更密碼</button>
+      </form>
+      <div *ngIf="passwordEditStatus" class="password">
+        我要編輯密碼
+        <button type="button" class="btn btn-primary" (click)="passwordEditStatus=!passwordEditStatus">取消變更</button>
+      </div>
+      <ng-template #loading>
+        Loading User...
+      </ng-template>
     </div>
   </div>
 
