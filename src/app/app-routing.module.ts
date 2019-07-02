@@ -6,6 +6,8 @@ import { PagesComponent } from './pages/pages.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent  },
   { path: '', component: LoginComponent },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+
   {
     path: 'pages',
     component: PagesComponent,
@@ -16,7 +18,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  //匯入並登記路徑
   imports: [RouterModule.forRoot(routes)],
+  // 匯出RouterModule使匯入routes的模組可存取路由指令
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
