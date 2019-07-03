@@ -9,10 +9,7 @@ import { PagesComponent } from './pages/pages.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    PagesComponent,
-  ],
+  declarations: [AppComponent, PagesComponent],
   imports: [
     BrowserModule,
     // 路徑模組
@@ -24,4 +21,4 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

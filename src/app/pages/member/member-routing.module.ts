@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { MemberListComponent } from './components/member-list/member-list.component';
 import { EditMemberComponent } from './components/edit-member/edit-member.component';
+import { InsertMemberComponent } from './components/insert-member/insert-member.component';
 
 const routes: Routes = [
   { path: '', component: MemberListComponent },
@@ -13,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MemberRoutingModule { }
+export class MemberRoutingModule {}

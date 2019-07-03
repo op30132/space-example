@@ -6,3 +6,15 @@ input:focus{
   color: red;
   border-color: red;
 }
+label{
+  font-weight: 600;
+}
+input,select{
+  margin-top: 12px;
+}
+.btns{
+  display: flex;
+  justify-content: center;
+  flex: auto;
+}
+

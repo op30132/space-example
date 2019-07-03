@@ -11,7 +11,6 @@ import { MemberServicesModule } from '../member-services.module';
   providedIn: MemberServicesModule
 })
 export class MemberService {
-
   static BASE_URL = '/rest/member/admin/accounts';
   static MEMBER_LIST_URL = `${MemberService.BASE_URL}/pager`;
 
@@ -19,17 +18,23 @@ export class MemberService {
    *
    * 下列為範例，可自行增修
    */
-  constructor(private restService: RestService) { }
+  constructor(private restService: RestService) {}
 
   /**
    * 依照傳入查詢條件與分頁條件向後端發除查詢請求
    * @param queryMember 查詢條件
    * @param pager 分頁條件
    */
-  getMemberList(queryMember: Member, pager: Pager<Member>): Observable<Pager<Member>> {
+  getMemberList(
+    queryMember: Member,
+    pager: Pager<Member>
+  ): Observable<Pager<Member>> {
     const queryOption: QueryOption = new QueryOption(queryMember, pager);
 
-    return this.restService.httpGet<Pager<Member>>(MemberService.MEMBER_LIST_URL, queryOption);
+    return this.restService.httpGet<Pager<Member>>(
+      MemberService.MEMBER_LIST_URL,
+      queryOption
+    );
   }
 
   /**
@@ -38,7 +43,9 @@ export class MemberService {
    */
   //用在帳號編輯
   getMemberById(uuid: string): Observable<Member> {
-    return this.restService.httpGet<Member>(`${MemberService.BASE_URL}/${uuid}`);
+    return this.restService.httpGet<Member>(
+      `${MemberService.BASE_URL}/${uuid}`
+    );
   }
 
   /**
@@ -47,6 +54,20 @@ export class MemberService {
    * @param member 欲更新之帳號
    */
   updateMember(member: Member) {
-    return this.restService.httpPut(`${MemberService.BASE_URL}/${member.uuid}`, member);
+    return this.restService.httpPut(
+      `${MemberService.BASE_URL}/${member.uuid}`,
+      member
+    );
+  }
+
+  /**
+   * 刪除帳號
+   *
+   * @param member 欲刪除之帳號
+   */
+  deleteMember(member: Member) {
+    return this.restService.httpDelete(
+      `${MemberService.BASE_URL}/${member.uuid}`
+    );
   }
 }
