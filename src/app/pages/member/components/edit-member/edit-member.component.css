@@ -8,6 +8,7 @@ input:focus{
 }
 label{
   font-weight: 600;
+  display: block;
 }
 input,select{
   margin-top: 12px;
@@ -17,4 +18,11 @@ input,select{
   justify-content: center;
   flex: auto;
 }
-
+.loading {
+  font-size: 28px;
+  height: 300px;
+  line-height: 300px;
+}
+.loading i {
+  color: rgb(172, 172, 172);
+}

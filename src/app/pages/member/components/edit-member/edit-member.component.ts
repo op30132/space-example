@@ -2,17 +2,13 @@ import { Component, OnInit, createPlatformFactory } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MemberService } from '../../services/member.service';
 import { switchMap, tap, map } from 'rxjs/operators';
-
 import { Member } from 'src/app/shared/models/member.model';
 import { Observable } from 'rxjs';
 import {
   FormGroup,
-  FormControl,
-  Validator,
   FormBuilder,
   Validators
 } from '@angular/forms';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-edit-member',
@@ -56,7 +52,6 @@ export class EditMemberComponent implements OnInit {
       newPass: [null, [Validators.required]],
       passCheck: [null, [Validators.required]]
     });
-    // this.profileForm.controls['status'].setValue('Y', {onlySelf: true});
   }
   // 取得欲修改之會員資料
   getMember() {

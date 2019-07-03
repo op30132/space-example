@@ -3,6 +3,8 @@
 }
 .loading {
   font-size: 28px;
+  height: 300px;
+  line-height: 300px;
 }
 .loading i {
   color: rgb(172, 172, 172);

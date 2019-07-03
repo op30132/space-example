@@ -1,24 +1,56 @@
-<div class="modal-header">
-  <h4 class="modal-title">新增帳號</h4>
-  <button
-    type="button"
-    class="close"
-    aria-label="Close"
-    (click)="activeModal.dismiss('Cross click')"
-  >
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body"></div>
-<div class="modal-footer">
-  <button type="submit" class="btn btn-primary">
-    送出
-  </button>
-  <button
-    type="button"
-    class="btn btn-light"
-    (click)="activeModal.close('Close click')"
-  >
-    返回
-  </button>
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">新增帳號</h4>
+    <!-- <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
+  </div>
+  <form [formGroup]="insertForm" (ngSubmit)="insertAccount()">
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="">帳號
+            <input type="text" class="form-control" formControlName="account" />
+          </label>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="">密碼
+            <input type="password" class="form-control" formControlName="password" />
+          </label>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="">姓名
+            <input type="text" class="form-control" formControlName="name" />
+          </label>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="">信箱
+            <input type="text" class="form-control" formControlName="email" />
+          </label>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="">連絡電話
+            <input type="text" class="form-control" formControlName="contactMobileTel" />
+          </label>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState">狀態
+            <select id="inputState" class="form-control" formControlName="status">
+              <option ng-selected value="Y">啟用</option>
+              <option value="N">停用</option>
+              <option value="D">註銷</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary" [disabled]="clicked">
+        送出
+      </button>
+      <button type="button" class="btn btn-outline-primary" (click)="activeModal.close('Close click')">
+        返回
+      </button>
+    </div>
+  </form>
 </div>

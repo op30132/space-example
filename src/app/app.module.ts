@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { PagesComponent } from './pages/pages.component';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, PagesComponent],
@@ -16,9 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     CoreModule,
     SharedModule,
-    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

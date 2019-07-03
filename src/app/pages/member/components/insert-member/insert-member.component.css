@@ -1,0 +1,6 @@
+.modal-header, .modal-footer{
+border-color: transparent;
+}
+.modal-content{
+    padding: 16px 24px;
+}

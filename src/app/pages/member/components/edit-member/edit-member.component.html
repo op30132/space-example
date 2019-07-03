@@ -2,55 +2,28 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>帳號設定</h2>
+        <h2 class="mb-3">帳號設定</h2>
       </div>
-      <form
-        *ngIf="member$ | async as member; else loading"
-        [formGroup]="profileForm"
-        (ngSubmit)="onSubmit()"
-      >
+      <form *ngIf="member$ | async as member; else loading" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <div class="form-row">
           <div class="form-group col-md-3">
-            <label for=""
-              >帳號
-              <input
-                type="text"
-                readonly
-                class="form-control-plaintext"
-                formControlName="account"
-              />
+            <label for="">帳號
+              <input type="text" readonly class="form-control-plaintext" formControlName="account" />
             </label>
           </div>
           <div class="form-group col-md-3">
-            <label for=""
-              >建立日期
-              <input
-                type="text"
-                readonly
-                class="form-control-plaintext"
-                formControlName="createDate"
-              />
+            <label for="">建立日期
+              <input type="text" readonly class="form-control-plaintext" formControlName="createDate" />
             </label>
           </div>
           <div class="form-group col-md-3">
-            <label for=""
-              >最後修改日期
-              <input
-                type="text"
-                readonly
-                class="form-control-plaintext"
-                formControlName="lastModifyDate"
-              />
+            <label for="">最後修改日期
+              <input type="text" readonly class="form-control-plaintext" formControlName="lastModifyDate" />
             </label>
           </div>
           <div class="form-group col-md-3">
-            <label for="inputState"
-              >狀態
-              <select
-                id="inputState"
-                class="form-control"
-                formControlName="status"
-              >
+            <label for="inputState">狀態
+              <select id="inputState" class="form-control" formControlName="status">
                 <option ng-selected value="Y">啟用</option>
                 <option value="N">停用</option>
                 <option value="D">註銷</option>
@@ -58,53 +31,33 @@
             </label>
           </div>
           <div class="form-group col-md-3">
-            <label for=""
-              >姓名
-              <input
-                type="text"
-                class="form-control"
-                formControlName="name"
-                placeholder="請輸入姓名"
-                [class.red]="
+            <label for="">姓名
+              <input type="text" class="form-control" formControlName="name" placeholder="請輸入姓名" [class.red]="
                   profileForm.get('name').invalid &&
                   profileForm.get('name').touched
-                "
-              />
+                " />
             </label>
-            <div
-              *ngIf="
+            <div *ngIf="
                 profileForm.get('name').invalid &&
                 (profileForm.get('name').dirty ||
                   profileForm.get('name').touched)
-              "
-              class="red"
-            >
+              " class="red">
               姓名為必填欄位
             </div>
           </div>
           <div class="form-group col-md-3">
-            <label for=""
-              >email
-              <input
-                type="email"
-                class="form-control"
-                formControlName="email"
-                (blur)="checkEmail()"
-                placeholder="請輸入信箱"
+            <label for="">email
+              <input type="email" class="form-control" formControlName="email" (blur)="checkEmail()" placeholder="請輸入信箱"
                 [class.red]="
                   profileForm.get('email').invalid &&
                   profileForm.get('email').touched
-                "
-              />
+                " />
             </label>
-            <div
-              *ngIf="
+            <div *ngIf="
                 profileForm.get('email').invalid &&
                 (profileForm.get('email').dirty ||
                   profileForm.get('email').touched)
-              "
-              class="red"
-            >
+              " class="red">
               信箱為必填欄位
             </div>
             <div class="red">
@@ -112,103 +65,59 @@
             </div>
           </div>
           <div class="form-group col-md-3">
-            <label for=""
-              >連絡電話
-              <input
-                type="number"
-                class="form-control"
-                formControlName="contactMobileTel"
-                placeholder="請輸入電話"
-              />
+            <label for="">連絡電話
+              <input type="number" class="form-control" formControlName="contactMobileTel" placeholder="請輸入電話" />
             </label>
           </div>
         </div>
         <div class="btns">
           <button type="submit" class="btn btn-primary mx-2">送出</button>
-          <button
-            type="button"
-            class="btn btn-outline-primary mx-2"
-            routerLink="/pages/member"
-          >
+          <button type="button" class="btn btn-outline-primary mx-2" routerLink="/pages/member">
             返回
           </button>
-          <button
-            type="button"
-            class="btn btn-danger mx-2"
-            (click)="deleteAccount()"
-          >
+          <button type="button" class="btn btn-danger mx-2" (click)="deleteAccount()">
             刪除
           </button>
-          <button
-            type="button"
-            class="btn btn-warning mx-2"
-            (click)="passwordEdit()"
-          >
+          <button type="button" class="btn btn-warning mx-2" (click)="passwordEdit()">
             變更密碼
           </button>
         </div>
       </form>
       <div *ngIf="passwordEditStatus" class="password">
         <h4 class="text-center mt-5">密碼設定</h4>
-        <form
-          action=""
-          [formGroup]="passwordForm"
-          (ngSubmit)="passwordUpadte()"
-        >
-          <div
-            class="form-row justify-content-center d-flex flex-column align-items-center"
-          >
+        <form action="" [formGroup]="passwordForm" (ngSubmit)="passwordUpadte()">
+          <div class="form-row justify-content-center d-flex flex-column align-items-center">
             <div class="form-group col-md-3">
-              <label for=""
-                >新密碼
-                <input
-                  type="password"
-                  class="form-control"
-                  formControlName="newPass"
-                  (focus)="nored()"
-                  [class.red]="
+              <label for="">新密碼
+                <input type="password" class="form-control" formControlName="newPass" (focus)="nored()" [class.red]="
                     (passwordForm.get('newPass').invalid &&
                       passwordForm.get('newPass').touched) ||
                     red
-                  "
-                />
+                  " />
               </label>
-              <div
-                *ngIf="
+              <div *ngIf="
                   (passwordForm.get('newPass').invalid &&
                     (passwordForm.get('newPass').dirty ||
                       passwordForm.get('newPass').touched)) ||
                   red
-                "
-                class="red"
-              >
+                " class="red">
                 請輸入新密碼
               </div>
             </div>
             <div class="form-group col-md-3">
-              <label for=""
-                >密碼確認
-                <input
-                  type="password"
-                  class="form-control"
-                  formControlName="passCheck"
-                  (focus)="nored()"
-                  [class.red]="
+              <label for="">密碼確認
+                <input type="password" class="form-control" formControlName="passCheck" (focus)="nored()" [class.red]="
                     (passwordForm.get('passCheck').invalid &&
                       passwordForm.get('passCheck').touched) ||
                     red
-                  "
-                />
+                  " />
               </label>
-              <div
-                *ngIf="
+              <div *ngIf="
                   (passwordForm.get('passCheck').invalid &&
                     (passwordForm.get('passCheck').dirty ||
                       passwordForm.get('passCheck').touched)) ||
                   red
-                "
-                class="red"
-              >
+                " class="red">
                 請再次輸入密碼
               </div>
             </div>
@@ -217,18 +126,17 @@
             <button type="submit" class="btn btn-primary mx-2">
               送出
             </button>
-            <button
-              type="button"
-              class="btn btn-outline-primary mx-2"
-              (click)="passwordEditStatus = !passwordEditStatus"
-            >
+            <button type="button" class="btn btn-outline-primary mx-2"
+              (click)="passwordEditStatus = !passwordEditStatus">
               取消變更
             </button>
           </div>
         </form>
       </div>
       <ng-template #loading>
-        Loading User...
+        <div class="loading text-center">
+          <i class="fas fa-spinner fa-pulse"></i>
+        </div>
       </ng-template>
     </div>
   </div>
