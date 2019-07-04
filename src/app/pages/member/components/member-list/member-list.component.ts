@@ -31,7 +31,7 @@ export class MemberListComponent implements OnInit {
   constructor(
     private memberService: MemberService,
     private modalService: NgbModal
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.queryPager.pageSize = 10;
@@ -55,6 +55,7 @@ export class MemberListComponent implements OnInit {
   }
   // pagination換分頁
   pageChange(nextPage: number) {
+    console.log(nextPage);
     this.queryPager.currentPage = nextPage;
     this.reloadData();
   }
