@@ -1,19 +1,22 @@
-input:focus{
+input:focus {
   outline: none;
   box-shadow: none;
 }
-.red{
+.red {
   color: red;
+}
+.outlineRed {
   border-color: red;
 }
-label{
+label {
   font-weight: 600;
   display: block;
 }
-input,select{
+input,
+select {
   margin-top: 12px;
 }
-.btns{
+.btns {
   display: flex;
   justify-content: center;
   flex: auto;

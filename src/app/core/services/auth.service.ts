@@ -13,24 +13,33 @@ import { Member } from 'src/app/shared/models/member.model';
 })
 export class AuthService {
   static BASE_AUTH_URL = '/rest';
-  static AUTHENTICATION_URL = `${AuthService.BASE_AUTH_URL}/auth/admin/authentication`;
-  static USER_PROFILE_URL = `${AuthService.BASE_AUTH_URL}/member/user/accounts/myProfile`;
+  static AUTHENTICATION_URL = `${
+    AuthService.BASE_AUTH_URL
+  }/auth/admin/authentication`;
+  static USER_PROFILE_URL = `${
+    AuthService.BASE_AUTH_URL
+  }/member/user/accounts/myProfile`;
 
   private profile: Member;
 
-
-  constructor(private restService: RestService,
-    private tokenService: AuthTokenService) {
-  }
+  constructor(
+    private restService: RestService,
+    private tokenService: AuthTokenService
+  ) {}
 
   /**
    * 登入認證
    * @param credential 登入認證資訊
    */
   authentication(credential: Credential): Observable<any> {
-    return this.restService.httpPost<AuthToken>(AuthService.AUTHENTICATION_URL, credential, 'application/x-www-form-urlencoded')
+    return this.restService
+      .httpPost<AuthToken>(
+        AuthService.AUTHENTICATION_URL,
+        credential,
+        'application/x-www-form-urlencoded'
+      )
       .pipe(
-        tap(resp => this.tokenService.authToekn = resp),
+        tap(resp => (this.tokenService.authToekn = resp)),
         switchMap(() => this.getUserProfile())
       );
   }
@@ -49,12 +58,14 @@ export class AuthService {
    */
   userLogout() {
     // TODO: 清除使用者資訊與authToken
+    sessionStorage.removeItem('authToken');
+    sessionStorage.removeItem('userProfile');
   }
 
   getUserProfile(): Observable<Member> {
-
     // 是否有資料
-    const localProfile = this.profile || JSON.parse(sessionStorage.getItem('userProfile'));
+    const localProfile =
+      this.profile || JSON.parse(sessionStorage.getItem('userProfile'));
     if (localProfile) {
       return Observable.create((observer: Observer<Member>) => {
         observer.next(localProfile);
@@ -62,8 +73,9 @@ export class AuthService {
       });
     }
 
-    return this.restService.httpGet<Member>(AuthService.USER_PROFILE_URL)
-      .pipe(tap(profile => this.userProfile = profile));
+    return this.restService
+      .httpGet<Member>(AuthService.USER_PROFILE_URL)
+      .pipe(tap(profile => (this.userProfile = profile)));
   }
 
   set userProfile(profile: Member) {

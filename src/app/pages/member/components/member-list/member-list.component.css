@@ -9,3 +9,7 @@
 .loading i {
   color: rgb(172, 172, 172);
 }
+.red {
+  color: red;
+  border-color: red;
+}

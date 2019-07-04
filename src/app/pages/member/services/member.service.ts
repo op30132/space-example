@@ -18,7 +18,7 @@ export class MemberService {
    *
    * 下列為範例，可自行增修
    */
-  constructor(private restService: RestService) { }
+  constructor(private restService: RestService) {}
 
   /**
    * 依照傳入查詢條件與分頁條件向後端發除查詢請求
@@ -77,9 +77,6 @@ export class MemberService {
    * @param member 欲新增之帳號
    */
   insertMember(member: Member) {
-    return this.restService.httpPost(
-      MemberService.BASE_URL, member
-    );
+    return this.restService.httpPost(MemberService.BASE_URL, member);
   }
-
 }

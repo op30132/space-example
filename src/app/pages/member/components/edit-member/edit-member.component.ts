@@ -4,11 +4,7 @@ import { MemberService } from '../../services/member.service';
 import { switchMap, tap, map } from 'rxjs/operators';
 import { Member } from 'src/app/shared/models/member.model';
 import { Observable } from 'rxjs';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-member',
@@ -84,7 +80,7 @@ export class EditMemberComponent implements OnInit {
           }
         },
         err => {
-          this.submitMsg = err.msg;
+          this.submitMsg = err.error.msg;
           alert(this.submitMsg);
         }
       );
@@ -118,7 +114,7 @@ export class EditMemberComponent implements OnInit {
           }
         },
         err => {
-          this.submitMsg = err.msg;
+          this.submitMsg = err.error.msg;
           alert(this.submitMsg);
         }
       );

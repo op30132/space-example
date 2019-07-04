@@ -1,20 +1,72 @@
 <div class="login-page">
-  <div class="row justify-content-center align-items-center" style="height:100vh">
+  <div
+    class="row justify-content-center align-items-center"
+    style="height:100vh"
+  >
     <div class="wrapper fadeInDown">
       <div id="formContent">
-
         <div class="fadeIn first login-page">
-          <img src="https://spaceadmin.hyweb.com.tw/assets/img/logo_no_background.png" id="icon" alt="User Icon" />
+          <img
+            src="https://spaceadmin.hyweb.com.tw/assets/img/logo_no_background.png"
+            id="icon"
+            alt="User Icon"
+          />
         </div>
-
         <form [formGroup]="loginFormGroup">
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="帳號" required=""
-            formControlName="account">
-          <input type="password" id="password" class="fadeIn third" placeholder="密碼" required=""
-            formControlName="password">
-          <input type="submit" class="fadeIn fourth" value="登入" (click)="submitForm()">
+          <input
+            type="text"
+            autoFocus
+            id="login"
+            class="fadeIn second"
+            name="login"
+            placeholder="帳號"
+            formControlName="account"
+            [class.outlineRed]="
+              loginFormGroup.get('account').invalid &&
+              (loginFormGroup.get('account').dirty ||
+                loginFormGroup.get('account').touched)
+            "
+          />
+          <div
+            *ngIf="
+              loginFormGroup.get('account').invalid &&
+              (loginFormGroup.get('account').dirty ||
+                loginFormGroup.get('account').touched)
+            "
+            class="red"
+          >
+            此欄位必填
+          </div>
+          <input
+            type="password"
+            id="password"
+            class="fadeIn third"
+            placeholder="密碼"
+            formControlName="password"
+            [class.outlineRed]="
+              loginFormGroup.get('password').invalid &&
+              (loginFormGroup.get('password').dirty ||
+                loginFormGroup.get('password').touched)
+            "
+          />
+          <div
+            *ngIf="
+              loginFormGroup.get('password').invalid &&
+              (loginFormGroup.get('password').dirty ||
+                loginFormGroup.get('password').touched)
+            "
+            class="red"
+          >
+            此欄位必填
+          </div>
+          <input
+            type="submit"
+            class="fadeIn fourth"
+            [disabled]="!loginFormGroup.valid || l"
+            value="登入"
+            (click)="submitForm()"
+          />
         </form>
-
       </div>
     </div>
   </div>

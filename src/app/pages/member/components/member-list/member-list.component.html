@@ -5,7 +5,10 @@
         <h2>人員帳號列表 <small></small></h2>
         <div class="clearfix"></div>
       </div>
-      <div class="row col-md-12 form-inline form-group" style="padding-top:10px;">
+      <div
+        class="row col-md-12 form-inline form-group"
+        style="padding-top:10px;"
+      >
         <div class="col-md-3">
           <button class="btn btn-outline-primary mb-2 mr-2" (click)="open()">
             新增
@@ -14,19 +17,38 @@
         <div class="col-md-9 form-inline">
           <div class="form-inline mr-sm-2">
             <label for="">帳號: </label>
-            <input type="text" class="form-control" style="width:100px;" [(ngModel)]="queryMember.account" />
+            <input
+              type="text"
+              class="form-control"
+              style="width:100px;"
+              [(ngModel)]="queryMember.account"
+            />
           </div>
           <div class="form-inline mr-sm-2">
             <label for="">姓名: </label>
-            <input type="text" class="form-control" style="width:80px;" [(ngModel)]="queryMember.name" />
+            <input
+              type="text"
+              class="form-control"
+              style="width:80px;"
+              [(ngModel)]="queryMember.name"
+            />
           </div>
           <div class="form-inline mr-sm-2">
             <label for="">卡號: </label>
-            <input type="text" class="form-control" style="width:80px;" [(ngModel)]="queryMember.cardNo" />
+            <input
+              type="text"
+              class="form-control"
+              style="width:80px;"
+              [(ngModel)]="queryMember.cardNo"
+            />
           </div>
           <div class="form-inline mr-sm-2">
             <label for="">Email: </label>
-            <input type="text" class="form-control" [(ngModel)]="queryMember.cardNo" />
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="queryMember.cardNo"
+            />
           </div>
           <button class="btn btn-primary" (click)="reloadData()">查詢</button>
         </div>
@@ -67,15 +89,23 @@
           <div class="row form-inline">
             <div class="col-md-2 form-inline">
               <label for="">筆數</label>
-              <select ngModel (ngModelChange)="onChange($event)">
-                <option *ngFor="let page of pageSizes" [value]="page">{{
-                  page
-                }}</option>
+              <select
+                [(ngModel)]="queryPager.pageSize"
+                (ngModelChange)="onChange($event)"
+              >
+                <option *ngFor="let page of pageSizes" [ngValue]="page">
+                  {{ page }}</option
+                >
               </select>
             </div>
             <div class="col-md-8 d-flex justify-content-center">
-              <ngb-pagination [(page)]="pager.currentPage" [pageSize]="pager.pageSize"
-                [collectionSize]="pager.totalCount" [maxSize]="5" (pageChange)="pageChange($event)">
+              <ngb-pagination
+                [(page)]="pager.currentPage"
+                [pageSize]="pager.pageSize"
+                [collectionSize]="pager.totalCount"
+                [maxSize]="5"
+                (pageChange)="pageChange($event)"
+              >
               </ngb-pagination>
             </div>
             <div class="col-md-2">
