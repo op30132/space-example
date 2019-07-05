@@ -1,1 +1,0 @@
-請嘗試自己建立完整AnnounceModule與功能

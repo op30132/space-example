@@ -13,16 +13,24 @@ const routes: Routes = [
     path: 'pages',
     component: PagesComponent,
     children: [
-      { path: 'member', loadChildren: './pages/member/member.module#MemberModule' }
+      {
+        path: 'member',
+        loadChildren: './pages/member/member.module#MemberModule'
+      },
+      {
+        path: 'announcement',
+        loadChildren:
+          './pages/announcement/announcement.module#AnnouncementModule'
+      }
     ],
     canActivate: [AuthGuard]
   }
 ];
 
 @NgModule({
-  //匯入並登記路徑
+  // 匯入並登記路徑
   imports: [RouterModule.forRoot(routes)],
   // 匯出RouterModule使匯入routes的模組可存取路由指令
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

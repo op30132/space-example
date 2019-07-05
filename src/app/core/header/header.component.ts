@@ -8,13 +8,11 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   profile: Member;
-
-  constructor(private authService: AuthService) { }
+  clicked: boolean;
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.profile = this.authService.userProfile;
   }
-
 }

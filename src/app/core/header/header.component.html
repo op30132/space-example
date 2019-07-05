@@ -1,20 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-  <a class="navbar-brand" href="/">
-
+  <a class="navbar-brand" routerLink="/">
     <span class="h3 mx-1">SpaceMe</span>
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    (click)="clicked = !clicked"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div
+    class="collapse navbar-collapse"
+    id="navbarSupportedContent"
+    [class.show]="clicked"
+  >
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/pages/member" routerLinkActive="active"
+          >member</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/pages/announcement"
+          routerLinkActive="active"
+          >announcement</a
+        >
+      </li>
     </ul>
     <div class="form-inline my-2 my-lg-0" style="color: white;">
       Welcome User
     </div>
   </div>
-
 </nav>
