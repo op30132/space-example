@@ -11,7 +11,7 @@ import { QueryOption } from 'src/app/shared/models/query-option.model';
   providedIn: AnnouncementServiceModule
 })
 export class AnnouncementService {
-  static BASE_URL = '/rest/member/admin/announcements';
+  static BASE_URL = '/rest/announcement/admin/announcements';
   static ANNOUNCEMENT_LIST_URL = `${AnnouncementService.BASE_URL}/pager`;
 
   constructor(private restService: RestService) {}

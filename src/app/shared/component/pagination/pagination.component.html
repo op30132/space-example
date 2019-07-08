@@ -1,0 +1,26 @@
+<div class="row form-inline">
+  <div class="col-md-2 form-inline">
+    <label for="">筆數</label>
+    <select
+      [(ngModel)]="queryPager.pageSize"
+      (ngModelChange)="onChange($event)"
+    >
+      <option *ngFor="let page of pageSizes" [ngValue]="page">
+        {{ page }}</option
+      >
+    </select>
+  </div>
+  <div class="col-md-8 d-flex justify-content-center">
+    <ngb-pagination
+      [(page)]="queryPager.currentPage"
+      [pageSize]="queryPager.pageSize"
+      [collectionSize]="queryPager.totalCount"
+      [maxSize]="5"
+      (pageChange)="onPageChange($event)"
+    >
+    </ngb-pagination>
+  </div>
+  <div class="col-md-2">
+    <p>總筆數：{{ queryPager.totalCount }}</p>
+  </div>
+</div>

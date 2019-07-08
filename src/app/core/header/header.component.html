@@ -21,7 +21,11 @@
   >
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/pages/member" routerLinkActive="active"
+        <a
+          class="nav-link"
+          routerLink="/pages/member"
+          routerLinkActive="active"
+          (click)="clicked = !clicked"
           >member</a
         >
       </li>
@@ -30,12 +34,17 @@
           class="nav-link"
           routerLink="/pages/announcement"
           routerLinkActive="active"
+          (click)="clicked = !clicked"
           >announcement</a
         >
       </li>
     </ul>
-    <div class="form-inline my-2 my-lg-0" style="color: white;">
-      Welcome User
-    </div>
+    <a
+      (click)="logOut()"
+      class="form-inline my-2 my-lg-0 text-light"
+      style="color: white;"
+    >
+      log Out
+    </a>
   </div>
 </nav>

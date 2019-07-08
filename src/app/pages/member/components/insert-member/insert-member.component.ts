@@ -51,7 +51,7 @@ export class InsertMemberComponent implements OnInit {
   ngOnInit() {
     this.memberList$ = this.searchTerms.pipe(
       // startWith(this.insertForm.value),
-      debounceTime(500),
+      debounceTime(400),
       distinctUntilChanged(),
       switchMap(query => this.memberService.getMemberList(query, null)),
       share()
@@ -81,6 +81,7 @@ export class InsertMemberComponent implements OnInit {
           if (result) {
             alert('新增成功');
             this.activeModal.close('Close click');
+            this.router.navigate(['./']);
           } else {
             alert('新增失敗');
           }

@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  EventEmitter,
-  Output
-} from '@angular/core';
+import { Component, OnInit, AfterViewInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { MemberService } from '../../services/member.service';
@@ -26,15 +20,13 @@ export class MemberListComponent implements OnInit {
   queryPager: Pager<Member> = new Pager();
 
   memberList$: Observable<Pager<Member>>;
-  public pageSizes: Number[] = [10, 30, 50, 100];
 
   constructor(
     private memberService: MemberService,
     private modalService: NgbModal
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.queryPager.pageSize = 10;
     this.reloadData();
   }
   // 重載會員資料
@@ -43,24 +35,18 @@ export class MemberListComponent implements OnInit {
       .getMemberList(this.queryMember, this.queryPager)
       .pipe(tap(pager => this.updateQueryPagerInfo(pager)));
   }
-  // 將拿到的pager資料設定回queryPager?
+  // 將拿到的pager資料設定回queryPager
   updateQueryPagerInfo(pager: Pager<Member>) {
     this.queryPager.currentPage = pager.currentPage;
     this.queryPager.totalCount = pager.totalCount;
   }
-  // 每頁幾筆
-  onChange(page: number) {
-    this.queryPager.pageSize = page;
-    this.reloadData();
-  }
-  // pagination換分頁
-  pageChange(nextPage: number) {
-    console.log(nextPage);
-    this.queryPager.currentPage = nextPage;
-    this.reloadData();
-  }
+
   // 跳出會員帳號modal
   open() {
     this.modalService.open(InsertMemberComponent, { size: 'lg' });
+  }
+  // pagination
+  onPageChange(nextPage: Pager<any>) {
+    this.reloadData();
   }
 }

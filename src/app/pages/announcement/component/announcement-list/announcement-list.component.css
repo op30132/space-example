@@ -1,0 +1,15 @@
+a {
+  cursor: pointer;
+}
+.title {
+  color: #228493;
+}
+.cross {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+}
+button:focus {
+  outline: none !important;
+  box-shadow: none;
+}

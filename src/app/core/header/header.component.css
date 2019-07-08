@@ -4,3 +4,6 @@
 .show {
   display: block;
 }
+a {
+  cursor: pointer;
+}

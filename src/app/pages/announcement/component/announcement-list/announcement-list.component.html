@@ -2,4 +2,146 @@
   <h2>
     最新消息
   </h2>
+  <div class="mb-3">
+    <div class="form-group row">
+      <div class="col-md-12 form-inline">
+        <label class="ml-2"
+          >標題
+          <input
+            type="text"
+            class="form-control ml-1"
+            style="width:100px;"
+            [(ngModel)]="queryArticle.subject"
+            (keyup.enter)="reloadData()"
+          />
+        </label>
+        <label for="" class="ml-2"
+          >內文
+          <input
+            type="text"
+            class="form-control ml-1"
+            style="width:120px;"
+            [(ngModel)]="queryArticle.announContent"
+            (keyup.enter)="reloadData()"
+          />
+        </label>
+
+        <label for="" class="ml-2">有效日期</label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            placeholder="請選擇日期"
+            name="dp"
+            [(ngModel)]="model"
+            ngbDatepicker
+            #d1="ngbDatepicker"
+            style="width:120px;"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary calendar"
+              (click)="d1.toggle()"
+              type="button"
+            >
+              <i class="fas fa-calendar-alt"></i>
+            </button>
+          </div>
+        </div>
+        -
+        <div class="input-group">
+          <input
+            style="width:120px;"
+            class="form-control"
+            placeholder="請選擇日期"
+            name="dp"
+            [(ngModel)]="model2"
+            ngbDatepicker
+            #d2="ngbDatepicker"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary calendar"
+              (click)="d2.toggle()"
+              type="button"
+            >
+              <i class="fas fa-calendar-alt"></i>
+            </button>
+          </div>
+        </div>
+        <button class="btn btn-primary ml-2" (click)="reloadData()">
+          查詢
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="articleList$ | async as pager; else loading">
+    <!-- 有資料顯示表格，無資料顯示noDataDiv -->
+    <ng-container *ngIf="pager.resultList.length > 0; else noDataDiv">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>標題</th>
+            <th>建立日期</th>
+            <th>有效日期</th>
+            <th>狀態</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let article of pager.resultList">
+            <!--點選帳號後將畫面導向編輯畫面-->
+            <td>
+              <a class="text-primary" (click)="open(content)">{{
+                article.subject
+              }}</a>
+            </td>
+            <td>{{ article.createDate | date: 'yyyy/dd/MM' }}</td>
+            <td *ngIf="article.validEndDate; else forever">
+              {{ article.validStartDate | date: 'yyyy/dd/MM' }}-{{
+                article.validEndDate | date: 'yyyy/dd/MM'
+              }}
+            </td>
+            <ng-template #forever>
+              <td>
+                永久有效
+              </td>
+            </ng-template>
+            <td [ngSwitch]="article.status">
+              <div *ngSwitchCase="'Y'">啟用</div>
+              <div *ngSwitchCase="'N'">停用</div>
+              <div *ngSwitchCase="'D'">註銷</div>
+            </td>
+            <ng-template let-modal #content>
+              <div class="px-5 py-3 ">
+                <h3 class="title">{{ article.subject }}</h3>
+                <div class="cross">
+                  <button
+                    type="button"
+                    class="close"
+                    aria-label="Close"
+                    (click)="modal.dismiss('Cross click')"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <p class="text-black-50">{{ article.validStartDate }}</p>
+                <p [innerHTML]="article.announContent"></p>
+              </div>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <ng-template #noDataDiv>
+      <p>查無資料</p>
+    </ng-template>
+  </div>
+  <app-pagination
+    [queryPager]="queryPager"
+    (pageChange)="onPageChange($event)"
+  ></app-pagination>
+  <ng-template #loading>
+    <div class="loading text-center">
+      <i class="fas fa-spinner fa-pulse"></i>
+    </div>
+  </ng-template>
 </div>

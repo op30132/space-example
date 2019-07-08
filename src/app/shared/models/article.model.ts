@@ -13,5 +13,6 @@ export class Article {
   status?: string;
   type?: string;
   validStartDate?: string;
-  announcementAttachs?: string;
+  validEndDate?: Date;
+  announcementAttachs?: Date;
 }

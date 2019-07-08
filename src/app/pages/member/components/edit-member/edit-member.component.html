@@ -97,16 +97,6 @@
                 "
               />
             </label>
-            <div
-              *ngIf="
-                profileForm.get('email').invalid &&
-                (profileForm.get('email').dirty ||
-                  profileForm.get('email').touched)
-              "
-              class="red"
-            >
-              信箱為必填欄位
-            </div>
             <div class="red">
               {{ emailMsg }}
             </div>

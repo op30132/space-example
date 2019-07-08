@@ -14,13 +14,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class EditMemberComponent implements OnInit {
   queryMember: Member = new Member();
   member$: Observable<Member>;
-
   profileForm: FormGroup;
   passwordForm: FormGroup;
   emailMsg: string;
   submitMsg: string;
   red: boolean;
-  passwordEditStatus: boolean = false;
+  passwordEditStatus: boolean;
+
   constructor(
     private memberService: MemberService,
     private route: ActivatedRoute,
@@ -38,7 +38,7 @@ export class EditMemberComponent implements OnInit {
     this.profileForm = this.fb.group({
       account: [null, [Validators.required]],
       status: [null, [Validators.required]],
-      email: [null, [Validators.required]],
+      email: [null],
       name: [null, [Validators.required]],
       contactMobileTel: [null],
       createDate: [null],
@@ -57,6 +57,12 @@ export class EditMemberComponent implements OnInit {
         tap(user => {
           // 分別將data放進表單及儲存
           this.profileForm.patchValue(user);
+          this.profileForm.patchValue({
+            createDate: new Date(user.createDate).toISOString().slice(0, 10),
+            lastModifyDate: new Date(user.lastModifyDate)
+              .toISOString()
+              .slice(0, 10)
+          });
           this.queryMember = user;
         })
       );
@@ -85,7 +91,8 @@ export class EditMemberComponent implements OnInit {
         }
       );
     } else {
-      this.submitMsg = '表單未填寫正確';
+      this.submitMsg = '表單未填寫完整';
+      alert(this.submitMsg);
     }
   }
   // email格式檢查
@@ -135,7 +142,7 @@ export class EditMemberComponent implements OnInit {
       return true;
     }
   }
-  //修改密碼
+  // 修改密碼
   passwordUpadte() {
     const checkRes = this.passwordCheck();
     if (!this.passwordForm.valid) {

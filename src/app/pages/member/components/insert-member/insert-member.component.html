@@ -24,7 +24,7 @@
             此欄位必填
           </div>
           <div *ngIf="insertForm.get('account').valid">
-            <div *ngIf="memberList$ | async as pager">
+            <div *ngIf="memberList$ | async as pager; else loading">
               <ng-container *ngIf="pager.resultList.length > 0; else noDataDiv">
                 <p class="red">此帳號已被註冊</p>
               </ng-container>
@@ -32,6 +32,11 @@
                 <p>此帳號無人使用</p>
               </ng-template>
             </div>
+            <ng-template #loading>
+              <div class="loading text-left">
+                <i class="fas fa-spinner fa-pulse"></i>
+              </div>
+            </ng-template>
           </div>
         </div>
         <div class="form-group col-md-4">

@@ -16,4 +16,4 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   entryComponents: [InsertMemberComponent],
   imports: [SharedModule, MemberRoutingModule, MemberServicesModule, NgbModule]
 })
-export class MemberModule { }
+export class MemberModule {}
