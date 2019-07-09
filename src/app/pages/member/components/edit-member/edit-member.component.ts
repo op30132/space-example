@@ -77,17 +77,12 @@ export class EditMemberComponent implements OnInit {
       );
       this.memberService.updateMember(this.queryMember).subscribe(
         (result: any) => {
-          if (result.code === 'success') {
-            this.submitMsg = '修改成功';
-            alert(this.submitMsg);
-            this.router.navigate(['pages/member']);
-          } else {
-            alert('修改失敗');
-          }
+          this.submitMsg = '修改成功';
+          alert(this.submitMsg);
+          this.router.navigate(['pages/member']);
         },
         err => {
-          this.submitMsg = err.error.msg;
-          alert(this.submitMsg);
+          alert('修改失敗');
         }
       );
     } else {
@@ -112,17 +107,12 @@ export class EditMemberComponent implements OnInit {
     if (delCheck) {
       this.memberService.deleteMember(this.queryMember).subscribe(
         (result: any) => {
-          if (result.code === 'success') {
-            this.submitMsg = '刪除成功';
-            alert(this.submitMsg);
-            this.router.navigate(['pages/member']);
-          } else {
-            alert('刪除失敗');
-          }
+          this.submitMsg = '刪除成功';
+          alert(this.submitMsg);
+          this.router.navigate(['pages/member']);
         },
         err => {
-          this.submitMsg = err.error.msg;
-          alert(this.submitMsg);
+          alert('刪除失敗');
         }
       );
     }
@@ -130,7 +120,7 @@ export class EditMemberComponent implements OnInit {
   // 跳出密碼修改區塊
   passwordEdit() {
     this.passwordEditStatus = true;
-    this.nored();
+    this.validatedRedStatus();
     this.passwordForm.reset();
   }
   // 檢查再次輸入密碼是否正確
@@ -155,21 +145,16 @@ export class EditMemberComponent implements OnInit {
       );
       this.memberService.updateMember(this.queryMember).subscribe(
         (result: any) => {
-          if (result.code === 'success') {
-            alert('修改密碼成功');
-            this.passwordEditStatus = false;
-          } else {
-            alert('修改密碼失敗');
-          }
+          alert('修改密碼成功');
+          this.passwordEditStatus = false;
         },
         err => {
-          this.submitMsg = err.msg;
-          alert(this.submitMsg);
+          alert('修改密碼失敗');
         }
       );
     }
   }
-  nored() {
+  validatedRedStatus() {
     this.red = false;
   }
 }

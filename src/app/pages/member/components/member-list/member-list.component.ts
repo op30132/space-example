@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, share } from 'rxjs/operators';
 import { MemberService } from '../../services/member.service';
 import { Pager } from 'src/app/shared/models/pager.model';
 import { Member } from 'src/app/shared/models/member.model';

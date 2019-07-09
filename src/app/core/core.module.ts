@@ -8,7 +8,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [LoginComponent, HeaderComponent, FooterComponent], // cmponent directive pipe
+  declarations: [LoginComponent, HeaderComponent, FooterComponent],
   imports: [SharedModule, HttpClientModule, RouterModule],
   exports: [HeaderComponent, FooterComponent]
 })

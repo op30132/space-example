@@ -20,10 +20,8 @@ export class AuthGuard implements CanActivate {
       temp = res;
     });
     if (temp) {
-      console.log('im in');
       return true;
     }
-    console.log('unauthorized');
     this.router.navigate(['/login']);
     return false;
   }

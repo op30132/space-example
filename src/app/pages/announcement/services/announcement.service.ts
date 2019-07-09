@@ -6,10 +6,7 @@ import { Article } from 'src/app/shared/models/article.model';
 import { Pager } from 'src/app/shared/models/pager.model';
 import { QueryOption } from 'src/app/shared/models/query-option.model';
 
-@Injectable({
-  // 提示angular相依注入此服務可能有其他相依檔案
-  providedIn: AnnouncementServiceModule
-})
+@Injectable()
 export class AnnouncementService {
   static BASE_URL = '/rest/announcement/admin/announcements';
   static ANNOUNCEMENT_LIST_URL = `${AnnouncementService.BASE_URL}/pager`;

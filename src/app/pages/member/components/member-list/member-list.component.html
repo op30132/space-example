@@ -82,10 +82,8 @@
                 <td>{{ member.cardNo }}</td>
                 <td>{{ member.email }}</td>
                 <!--請調整為 Y: 啟用; N:停用 文字-->
-                <td [ngSwitch]="member.status">
-                  <div *ngSwitchCase="'Y'">啟用</div>
-                  <div *ngSwitchCase="'N'">停用</div>
-                  <div *ngSwitchCase="'D'">註銷</div>
+                <td>
+                  <div>{{ member.status | memberStatus }}</div>
                 </td>
               </tr>
             </tbody>

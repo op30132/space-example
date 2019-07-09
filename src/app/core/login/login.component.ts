@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if (sessionStorage.getItem('userProfile')) {
       // 回到上個url
-      this.location.back();
+      // this.location.back();
+      this.router.navigate(['/pages/member']);
     }
   }
 
@@ -45,11 +46,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/pages/member']);
         },
         error => {
-          if (!error.ok) {
-            this.loading = false;
-            alert('帳號密碼錯誤');
-            this.loginFormGroup.controls['password'].reset();
-          }
+          // if (!error.ok) {
+          this.loading = false;
+          alert('帳號或密碼錯誤');
+          this.loginFormGroup.controls['password'].reset();
+          // }
         }
       );
   }

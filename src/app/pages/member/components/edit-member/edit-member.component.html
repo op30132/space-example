@@ -155,7 +155,7 @@
                   type="password"
                   class="form-control"
                   formControlName="newPass"
-                  (focus)="nored()"
+                  (focus)="validatedRedStatus()"
                   [class.outlineRed]="
                     (passwordForm.get('newPass').invalid &&
                       passwordForm.get('newPass').touched) ||
@@ -182,7 +182,7 @@
                   type="password"
                   class="form-control"
                   formControlName="passCheck"
-                  (focus)="nored()"
+                  (focus)="validatedRedStatus()"
                   [class.outlineRed]="
                     (passwordForm.get('passCheck').invalid &&
                       passwordForm.get('passCheck').touched) ||

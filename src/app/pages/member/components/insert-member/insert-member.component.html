@@ -18,13 +18,14 @@
               [class.outlineRed]="isInvalid == false"
               (keyup)="accountCheck()"
               (focus)="isInvalid = true"
+              maxlength="20"
             />
           </label>
           <div *ngIf="isInvalid == false" class="red">
             此欄位必填
           </div>
           <div *ngIf="insertForm.get('account').valid">
-            <div *ngIf="memberList$ | async as pager; else loading">
+            <div *ngIf="accountCheck$ | async as pager; else loading">
               <ng-container *ngIf="pager.resultList.length > 0; else noDataDiv">
                 <p class="red">此帳號已被註冊</p>
               </ng-container>
@@ -48,6 +49,24 @@
               formControlName="password"
               [class.outlineRed]="isInvalid == false"
               (focus)="isInvalid = true"
+              maxlength="20"
+            />
+          </label>
+          <div *ngIf="isInvalid == false" class="red">
+            此為必填欄位
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for=""
+            ><span [class.red]="insertForm.get('password').invalid">*</span
+            >確認密碼
+            <input
+              type="password"
+              class="form-control"
+              formControlName="passwordCheck"
+              [class.outlineRed]="isInvalid == false"
+              (focus)="isInvalid = true"
+              maxlength="20"
             />
           </label>
           <div *ngIf="isInvalid == false" class="red">
@@ -63,6 +82,7 @@
               formControlName="name"
               [class.outlineRed]="isInvalid == false"
               (focus)="isInvalid = true"
+              maxlength="20"
             />
           </label>
           <div *ngIf="isInvalid == false" class="red">
@@ -72,8 +92,18 @@
         <div class="form-group col-md-4">
           <label
             >信箱
-            <input type="email" class="form-control" formControlName="email" />
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              maxlength="50"
+              (blur)="checkEmail()"
+              (focus)="emailInValid = false"
+            />
           </label>
+          <div *ngIf="emailInValid" class="red">
+            信箱格式不符
+          </div>
         </div>
         <div class="form-group col-md-4">
           <label for=""
@@ -82,6 +112,7 @@
               type="text"
               class="form-control"
               formControlName="contactMobileTel"
+              maxlength="20"
             />
           </label>
         </div>

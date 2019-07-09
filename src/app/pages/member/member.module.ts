@@ -6,12 +6,14 @@ import { EditMemberComponent } from './components/edit-member/edit-member.compon
 import { MemberServicesModule } from './member-services.module';
 import { InsertMemberComponent } from './components/insert-member/insert-member.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MemberStatusPipe } from './pipe/member-status.pipe';
 
 @NgModule({
   declarations: [
     MemberListComponent,
     EditMemberComponent,
-    InsertMemberComponent
+    InsertMemberComponent,
+    MemberStatusPipe
   ],
   entryComponents: [InsertMemberComponent],
   imports: [SharedModule, MemberRoutingModule, MemberServicesModule, NgbModule]

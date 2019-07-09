@@ -24,10 +24,10 @@ export class InsertMemberComponent implements OnInit {
   insertForm: FormGroup;
   clicked: boolean;
   isInvalid: boolean;
-
+  emailInValid: Boolean;
   // 查詢條件model
   queryMember: Member = new Member();
-  memberList$: Observable<Pager<Member>>;
+  accountCheck$: Observable<Pager<Member>>;
 
   private searchTerms: Subject<Member> = new Subject();
 
@@ -38,18 +38,19 @@ export class InsertMemberComponent implements OnInit {
     private router: Router
   ) {
     this.insertForm = this.fb.group({
-      account: [null, [Validators.required]],
+      account: [null, [Validators.required, Validators.maxLength(20)]],
       status: [null, [Validators.required]],
-      name: [null, [Validators.required]],
-      password: [null, [Validators.required]],
-      email: [null],
-      contactMobileTel: [null]
+      name: [null, [Validators.required, Validators.maxLength(20)]],
+      password: [null, [Validators.required, Validators.maxLength(20)]],
+      passwordCheck: [null, [Validators.required, Validators.maxLength(20)]],
+      email: [null, [Validators.maxLength(50)]],
+      contactMobileTel: [null, Validators.maxLength(20)]
     });
     this.insertForm.controls['status'].setValue('Y', { onlySelf: true });
   }
 
   ngOnInit() {
-    this.memberList$ = this.searchTerms.pipe(
+    this.accountCheck$ = this.searchTerms.pipe(
       // startWith(this.insertForm.value),
       debounceTime(400),
       distinctUntilChanged(),
@@ -65,33 +66,30 @@ export class InsertMemberComponent implements OnInit {
   // email格式檢查
   checkEmail() {
     if (this.insertForm.value.email) {
-      const pattern = /^[0-9?A-z0-9?]+(\.)?[0-9?A-z0-9?]+@[A-z]+\.[A-z]{3}.?[A-z]{0,3}$/i;
+      const pattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/gim;
       if (!pattern.test(this.insertForm.value.email)) {
-        alert('信箱格式不符');
+        this.emailInValid = true;
       }
     }
   }
   // 送出新增會員表單
   insertAccount() {
-    if (this.insertForm.valid) {
+    if (this.insertForm.valid && !this.emailInValid) {
       this.clicked = true;
       this.newMember = Object.assign(this.newMember, this.insertForm.value);
       this.memberService.insertMember(this.newMember).subscribe(
         (result: any) => {
-          if (result) {
-            alert('新增成功');
-            this.activeModal.close('Close click');
-            this.router.navigate(['./']);
-          } else {
-            alert('新增失敗');
-          }
+          alert('新增成功');
+          this.activeModal.close('Close click');
+          this.router.navigate(['./']);
         },
         err => {
-          alert(err.error.msg);
+          alert('新增失敗');
         }
       );
     } else {
       this.isInvalid = false;
+      alert('表單填寫不完整');
     }
   }
 }

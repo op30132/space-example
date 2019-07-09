@@ -31,6 +31,7 @@ export class AnnouncementListComponent implements OnInit {
   ngOnInit() {
     this.reloadData();
   }
+  // 載文章列表
   reloadData() {
     this.articleList$ = this.announcementService
       .getArticleList(this.queryArticle, this.queryPager)
@@ -50,6 +51,7 @@ export class AnnouncementListComponent implements OnInit {
   onPageChange(nextPage: Pager<any>) {
     this.reloadData();
   }
+  // 打開article detail的modal
   open(content) {
     this.modalService.open(content, { size: 'lg' });
   }
