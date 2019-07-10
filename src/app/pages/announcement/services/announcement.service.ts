@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AnnouncementServiceModule } from '../announcement-service.module';
 import { RestService } from 'src/app/core/services/rest.service';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/shared/models/article.model';

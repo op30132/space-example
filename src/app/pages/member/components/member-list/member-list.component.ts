@@ -20,7 +20,6 @@ export class MemberListComponent implements OnInit {
   queryPager: Pager<Member> = new Pager();
 
   memberList$: Observable<Pager<Member>>;
-
   constructor(
     private memberService: MemberService,
     private modalService: NgbModal
@@ -29,11 +28,16 @@ export class MemberListComponent implements OnInit {
   ngOnInit() {
     this.reloadData();
   }
+
   // 重載會員資料
   reloadData() {
     this.memberList$ = this.memberService
       .getMemberList(this.queryMember, this.queryPager)
-      .pipe(tap(pager => this.updateQueryPagerInfo(pager)));
+      .pipe(
+        tap(pager => {
+          this.updateQueryPagerInfo(pager);
+        })
+      );
   }
   // 將拿到的pager資料設定回queryPager
   updateQueryPagerInfo(pager: Pager<Member>) {
