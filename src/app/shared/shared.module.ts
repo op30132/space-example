@@ -18,4 +18,4 @@ import { CustomReuseStrategy } from './class/custom-reuse-strategy';
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: CustomReuseStrategy }]
 })
-export class SharedModule {}
+export class SharedModule { }
