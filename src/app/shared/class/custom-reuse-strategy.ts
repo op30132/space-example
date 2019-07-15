@@ -4,41 +4,43 @@ import {
   ActivatedRouteSnapshot,
   DetachedRouteHandle
 } from '@angular/router';
+import { EditMemberComponent } from 'src/app/pages/member/components/edit-member/edit-member.component';
+import { AnnouncementListComponent } from 'src/app/pages/announcement/component/announcement-list/announcement-list.component';
+import { MemberListComponent } from 'src/app/pages/member/components/member-list/member-list.component';
+import { LoginComponent } from 'src/app/core/login/login.component';
 
 export class CustomReuseStrategy implements RouteReuseStrategy {
-  public static handlers: { [key: string]: DetachedRouteHandle } = {};
+  handlers: { [key: string]: DetachedRouteHandle } = {};
+  routesToCache: string[] = ['member'];
 
-  // 判斷路由是否能重複使用
   public shouldDetach(route: ActivatedRouteSnapshot): boolean {
-    // 默認所有的路由設定都可以重複使用
-    // 可透過 route.data 的方式來設定重複使用的規則
-    return true;
+    return this.routesToCache.indexOf(route.data.key) > -1;
+    // return true;
   }
-
   // 當路由離開時，會觸發此方法
   public store(
     route: ActivatedRouteSnapshot,
     handle: DetachedRouteHandle
   ): void {
     // 將目前路由內容暫存起來
-    CustomReuseStrategy.handlers[route.routeConfig.path] = handle;
+    this.handlers[route.data.key] = handle;
   }
-
   // 當路由進入時，可判斷是否還原路由的暫存內容
   public shouldAttach(route: ActivatedRouteSnapshot): boolean {
-    return (
-      !!route.routeConfig &&
-      !!CustomReuseStrategy.handlers[route.routeConfig.path]
-    );
+    console.log(route.component);
+    if (route.data.key) {
+      return !!route.routeConfig && !!this.handlers[route.data.key];
+    }
+    this.handlers = {};
+    return false;
   }
   // 從 Cache 中取得對應的暫存內容
   public retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
     if (!route.routeConfig) {
       return null;
     }
-    return CustomReuseStrategy.handlers[route.routeConfig.path];
+    return this.handlers[route.data.key];
   }
-
   // 判斷是否同一路由
   public shouldReuseRoute(
     future: ActivatedRouteSnapshot,

@@ -5,9 +5,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaginationComponent } from './component/pagination/pagination.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { CustomReuseStrategy } from './class/custom-reuse-strategy';
-
+import { ValidateAccountDirective } from './class/validate-account.directive';
 @NgModule({
-  declarations: [PaginationComponent],
+  declarations: [PaginationComponent, ValidateAccountDirective],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, NgbModule],
   exports: [
     CommonModule,
@@ -16,6 +16,11 @@ import { CustomReuseStrategy } from './class/custom-reuse-strategy';
     NgbModule,
     PaginationComponent
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: CustomReuseStrategy }]
+  providers: [
+    {
+      provide: RouteReuseStrategy,
+      useClass: CustomReuseStrategy
+    }
+  ]
 })
 export class SharedModule {}

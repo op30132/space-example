@@ -5,7 +5,10 @@ import { AnnouncementListComponent } from './component/announcement-list/announc
 
 const routes: Routes = [
   { path: '', component: AnnouncementListComponent },
-  { path: './:announId', component: AnnouncementListComponent }
+  {
+    path: './:announId',
+    component: AnnouncementListComponent
+  }
 ];
 
 @NgModule({
