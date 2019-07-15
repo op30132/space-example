@@ -50,9 +50,9 @@ export class InsertMemberComponent implements OnInit {
           null,
           [
             Validators.required,
-            Validators.maxLength(20),
-            this.accountValidator.validate.bind(this.accountValidator)
-          ]
+            Validators.maxLength(20)
+          ],
+          this.accountValidator.validate(),
         ],
         status: [null, Validators.required],
         name: [null, [Validators.required, Validators.maxLength(20)]],
@@ -80,6 +80,7 @@ export class InsertMemberComponent implements OnInit {
   accountCheck() {
     // this.queryMember.account = this.insertForm.value.account;
     // this.searchTerms.next(this.insertForm.value);
+    console.log(this.insertForm.get('account'))
   }
 
   // email格式檢查

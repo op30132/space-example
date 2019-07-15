@@ -1,11 +1,11 @@
 import { Directive, forwardRef, Injectable } from '@angular/core';
 import {
-  AsyncValidator,
+  AsyncValidatorFn,
   AbstractControl,
   NG_ASYNC_VALIDATORS,
   ValidationErrors
 } from '@angular/forms';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, startWith, first } from 'rxjs/operators';
 import { MemberService } from '../../pages/member/services/member.service';
 import { Observable, Subject } from 'rxjs';
 import { Member } from 'src/app/shared/models/member.model';
@@ -20,27 +20,36 @@ import {
 
 // reactive form
 @Injectable()
-export class UniqueAlterEgoValidator implements AsyncValidator {
-  constructor(private memberService: MemberService) {}
-  accountCheck$: Observable<Pager<Member>>;
-  queryMember: Member = new Member();
-  // searchTerms: Subject<Member> = new Subject();
+export class UniqueAlterEgoValidator {
+  constructor(private memberService: MemberService) { }
 
-  validate(
-    ctrl: AbstractControl
-  ): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-    if (ctrl.value) {
-      this.queryMember.account = ctrl.value;
+  queryMember: Member = new Member();
+  searchTerms: Subject<Member> = new Subject();
+
+  searchUser(text: string) {
+    this.queryMember.account = text
+    this.searchTerms.next(this.queryMember)
+    return this.searchTerms
+      .pipe(
+        startWith(this.queryMember),
+        debounceTime(400),
+        distinctUntilChanged(),
+        switchMap((query) => {
+          return this.memberService.getMemberList(query, null)
+        }),
+      );
+  }
+
+  validate(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.searchUser(control.value)
+        .pipe(
+          map(item =>
+            (item.resultList.length > 0 ? { usernameExists: true } : null)
+          ),
+          first()
+        )
     }
-    console.log(this.queryMember);
-    return this.memberService.getMemberList(this.queryMember, null).pipe(
-      debounceTime(400),
-      distinctUntilChanged(),
-      map(item =>
-        item.resultList.length > 0 ? { usernameExists: true } : null
-      ),
-      catchError(() => null)
-    );
   }
 }
 // 用於模板驅動表單
@@ -55,9 +64,9 @@ export class UniqueAlterEgoValidator implements AsyncValidator {
   ]
 })
 export class ValidateAccountDirective {
-  constructor(private validator: UniqueAlterEgoValidator) {}
+  constructor(private validator: UniqueAlterEgoValidator) { }
 
   validate(control: AbstractControl) {
-    this.validator.validate(control);
+    this.validator.validate();
   }
 }

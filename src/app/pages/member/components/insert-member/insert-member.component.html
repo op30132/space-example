@@ -9,21 +9,10 @@
     <div class="modal-body">
       <div class="form-row">
         <div class="form-group col-md-4">
-          <label for=""
-            ><span [class.red]="insertForm.get('account').invalid">*</span>帳號
-            <input
-              type="text"
-              class="form-control"
-              formControlName="account"
-              [class.outlineRed]="isInvalid == false"
-              (keyup)="accountCheck()"
-              (focus)="isInvalid = true"
-              maxlength="20"
-            />
+          <label for=""><span [class.red]="insertForm.get('account').invalid">*</span>帳號
+            <input type="text" class="form-control" formControlName="account" [class.outlineRed]="isInvalid == false"
+              (keyup)="accountCheck()" (focus)="isInvalid = true" maxlength="20" />
           </label>
-          <div *ngIf="isInvalid == false" class="red">
-            此欄位必填
-          </div>
           <!-- <div *ngIf="insertForm.get('account').valid">
             <div *ngIf="accountCheck$ | async as pager; else loading">
               <ng-container *ngIf="pager.resultList.length > 0; else noDataDiv">
@@ -39,105 +28,72 @@
               </div>
             </ng-template>
           </div> -->
-          <div
-            *ngIf="
+
+          <div *ngIf="this.insertForm.get('account').pending">
+            <div class="loading text-left">
+              <i class="fas fa-spinner fa-pulse"></i>
+            </div>
+          </div>
+          <div *ngIf="this.insertForm.get('account').status=='VALID'">
+            <p>此帳號無人使用</p>
+          </div>
+          <div *ngIf="
               this.insertForm.get('account').dirty &&
-              this.insertForm.get('account').errors
-            "
-            class="error"
-          >
-            <div *ngIf="insertForm.get('account').errors">
-              Username required.
+              this.insertForm.get('account').errors 
+            " class="error">
+
+            <div *ngIf="insertForm.get('account').errors?.usernameExists" class="red">
+              此帳號已被註冊
             </div>
-            <div *ngIf="insertForm.get('account').errors?.usernameExists">
-              Username already exists.
+            <div *ngIf="insertForm.get('account').errors.required" class="red">
+              此欄位必填
             </div>
           </div>
         </div>
         <div class="form-group col-md-4">
-          <label for=""
-            ><span [class.red]="insertForm.get('password').invalid">*</span>密碼
-            <input
-              type="password"
-              class="form-control"
-              formControlName="password"
-              [class.outlineRed]="isInvalid == false"
-              (focus)="isInvalid = true"
-              maxlength="20"
-            />
+          <label for=""><span [class.red]="insertForm.get('password').invalid">*</span>密碼
+            <input type="password" class="form-control" formControlName="password"
+              [class.outlineRed]="isInvalid == false" (focus)="isInvalid = true" maxlength="20" />
           </label>
           <div *ngIf="isInvalid == false" class="red">
             此為必填欄位
           </div>
         </div>
         <div class="form-group col-md-4">
-          <label for=""
-            ><span [class.red]="insertForm.get('password').invalid">*</span
-            >確認密碼
-            <input
-              type="password"
-              class="form-control"
-              formControlName="passwordCheck"
-              [class.outlineRed]="isInvalid == false"
-              (focus)="isInvalid = true"
-              maxlength="20"
-            />
+          <label for=""><span [class.red]="insertForm.get('password').invalid">*</span>確認密碼
+            <input type="password" class="form-control" formControlName="passwordCheck"
+              [class.outlineRed]="isInvalid == false" (focus)="isInvalid = true" maxlength="20" />
           </label>
           <div *ngIf="isInvalid == false" class="red">
             此為必填欄位
           </div>
         </div>
         <div class="form-group col-md-4">
-          <label for=""
-            ><span [class.red]="insertForm.get('name').invalid">*</span>姓名
-            <input
-              type="text"
-              class="form-control"
-              formControlName="name"
-              [class.outlineRed]="isInvalid == false"
-              (focus)="isInvalid = true"
-              maxlength="20"
-            />
+          <label for=""><span [class.red]="insertForm.get('name').invalid">*</span>姓名
+            <input type="text" class="form-control" formControlName="name" [class.outlineRed]="isInvalid == false"
+              (focus)="isInvalid = true" maxlength="20" />
           </label>
           <div *ngIf="isInvalid == false" class="red">
             此為必填欄位
           </div>
         </div>
         <div class="form-group col-md-4">
-          <label
-            >信箱
-            <input
-              type="email"
-              class="form-control"
-              formControlName="email"
-              maxlength="50"
-              (blur)="checkEmail()"
-              (focus)="emailInValid = false"
-            />
+          <label>信箱
+            <input type="email" class="form-control" formControlName="email" maxlength="50" (blur)="checkEmail()"
+              (focus)="emailInValid = false" />
           </label>
           <div *ngIf="emailInValid" class="red">
             信箱格式不符
           </div>
         </div>
         <div class="form-group col-md-4">
-          <label for=""
-            >連絡電話
-            <input
-              type="text"
-              class="form-control"
-              formControlName="contactMobileTel"
-              maxlength="20"
-            />
+          <label for="">連絡電話
+            <input type="text" class="form-control" formControlName="contactMobileTel" maxlength="20" />
           </label>
         </div>
         <div class="form-group col-md-4">
-          <label for="inputState"
-            >狀態
-            <select
-              id="inputState"
-              class="form-control"
-              formControlName="status"
-            >
+          <label for="inputState">狀態
+            <select id="inputState" class="form-control" formControlName="status">
               <option ng-selected value="Y">啟用</option>
               <option value="N">停用</option>
               <option value="D">註銷</option>
@@ -150,11 +106,7 @@
       <button type="submit" class="btn btn-primary" [disabled]="clicked">
         送出
       </button>
-      <button
-        type="button"
-        class="btn btn-outline-primary"
-        (click)="activeModal.close('Close click')"
-      >
+      <button type="button" class="btn btn-outline-primary" (click)="activeModal.close('Close click')">
         返回
       </button>
     </div>
