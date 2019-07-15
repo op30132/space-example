@@ -23,4 +23,4 @@ import { ValidateAccountDirective } from './class/validate-account.directive';
     }
   ]
 })
-export class SharedModule {}
+export class SharedModule { }

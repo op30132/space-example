@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, RouteReuseStrategy } from '@angular/router';
 import { MemberListComponent } from './components/member-list/member-list.component';
 import { EditMemberComponent } from './components/edit-member/edit-member.component';
 
