@@ -1,0 +1,138 @@
+<table class="container">
+  <table class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_title">
+      <h2>人員帳號列表 <small></small></h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="row col-md-12 form-inline form-group" style="padding-top:10px;">
+      <div class="col-md-3">
+        <button class="btn btn-outline-primary mb-2 mr-2" (click)="addMember()">
+          新增
+        </button>
+      </div>
+      <div class="col-md-9 form-inline">
+        <div class="form-inline mr-sm-2">
+          <label for="">帳號: </label>
+          <input
+            type="text"
+            class="form-control"
+            style="width:100px;"
+            [(ngModel)]="queryMember.account"
+            (keyup.enter)="reloadData()"
+          />
+        </div>
+        <div class="form-inline mr-sm-2">
+          <label for="">姓名: </label>
+          <input
+            type="text"
+            class="form-control"
+            style="width:80px;"
+            [(ngModel)]="queryMember.name"
+            (keyup.enter)="reloadData()"
+          />
+        </div>
+        <div class="form-inline mr-sm-2">
+          <label for="">卡號: </label>
+          <input
+            type="text"
+            class="form-control"
+            style="width:80px;"
+            [(ngModel)]="queryMember.cardNo"
+            (keyup.enter)="reloadData()"
+          />
+        </div>
+        <div class="form-inline mr-sm-2">
+          <label for="">Email: </label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="queryMember.cardNo"
+            (keyup.enter)="reloadData()"
+          />
+        </div>
+        <button class="btn btn-primary" (click)="reloadData()">查詢</button>
+      </div>
+    </div>
+    <div [formGroup]="memberListForm">
+      <table formArrayName="member" class="table table-bordered col-md-12">
+        <thead>
+          <tr>
+            <th>帳號</th>
+            <th>姓名</th>
+            <th>卡號</th>
+            <th>Email</th>
+            <th>狀態</th>
+          </tr>
+        </thead>
+        <ng-container
+          *ngFor="let member of memberlist.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <tbody>
+            <!-- The repeated alias template -->
+            <tr>
+              <td>
+                <input
+                  type="text"
+                  formControlName="account"
+                  class="form-control-plaintext"
+                  (keyup.enter)="editSubmit(i)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="form-control-plaintext"
+                  (keyup.enter)="editSubmit(i)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  formControlName="cardNo"
+                  class="form-control-plaintext"
+                  (keyup.enter)="editSubmit(i)"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  formControlName="email"
+                  class="form-control-plaintext"
+                  (keyup.enter)="editSubmit(i)"
+                />
+              </td>
+              <!--請調整為 Y: 啟用; N:停用 文字-->
+              <td>
+                <div>
+                  <select
+                    id="inputState"
+                    class="form-control"
+                    formControlName="status"
+                    (change)="editSubmit(i)"
+                  >
+                    <option ng-selected value="Y">啟用</option>
+                    <option value="N">停用</option>
+                    <option value="D">註銷</option>
+                  </select>
+                  <!-- <input
+                      type="text"
+                      [readonly]="true"
+                      formControlName="status"
+                      class="form-control-plaintext"
+                    /> -->
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </ng-container>
+      </table>
+    </div>
+
+    <app-pagination
+      [queryPager]="queryPager"
+      (pageChange)="onPageChange($event)"
+    ></app-pagination>
+  </table>
+</table>

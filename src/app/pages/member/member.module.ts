@@ -7,18 +7,17 @@ import { MemberServicesModule } from './member-services.module';
 import { InsertMemberComponent } from './components/insert-member/insert-member.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MemberStatusPipe } from './pipe/member-status.pipe';
-import { RouteReuseStrategy } from '@angular/router';
-import { CustomReuseStrategy } from 'src/app/shared/class/custom-reuse-strategy';
+import { FormArrayComponent } from './components/form-array/form-array.component';
 
 @NgModule({
   declarations: [
     MemberListComponent,
     EditMemberComponent,
     InsertMemberComponent,
-    MemberStatusPipe
+    MemberStatusPipe,
+    FormArrayComponent
   ],
   entryComponents: [InsertMemberComponent],
-  imports: [SharedModule, MemberRoutingModule, MemberServicesModule, NgbModule],
-
+  imports: [SharedModule, MemberRoutingModule, MemberServicesModule, NgbModule]
 })
-export class MemberModule { }
+export class MemberModule {}

@@ -39,7 +39,7 @@
           </div>
           <div *ngIf="
               this.insertForm.get('account').dirty &&
-              this.insertForm.get('account').errors 
+              this.insertForm.get('account').errors
             " class="error">
 
             <div *ngIf="insertForm.get('account').errors?.usernameExists" class="red">

@@ -18,8 +18,8 @@ export class MemberListComponent implements OnInit {
   queryMember: Member = new Member();
   // 分頁model
   queryPager: Pager<Member> = new Pager();
-
   memberList$: Observable<Pager<Member>>;
+
   constructor(
     private memberService: MemberService,
     private modalService: NgbModal

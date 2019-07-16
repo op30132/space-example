@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule, RouteReuseStrategy } from '@angular/router';
 import { MemberListComponent } from './components/member-list/member-list.component';
 import { EditMemberComponent } from './components/edit-member/edit-member.component';
+import { FormArrayComponent } from './components/form-array/form-array.component';
 
 const routes: Routes = [
-  { path: '', component: MemberListComponent, data: { key: 'member' } },
+  { path: '', component: FormArrayComponent, data: { key: 'member' } },
   { path: 'edit/:id', component: EditMemberComponent, data: { key: 'edit' } }
 ];
 
