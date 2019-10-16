@@ -10,7 +10,7 @@ import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-announcement-list',
   templateUrl: './announcement-list.component.html',
-  styleUrls: ['./announcement-list.component.css']
+  styleUrls: ['./announcement-list.component.css'],
 })
 export class AnnouncementListComponent implements OnInit {
   // 查詢條件model
@@ -36,14 +36,18 @@ export class AnnouncementListComponent implements OnInit {
     this.articleList$ = this.announcementService
       .getArticleList(this.queryArticle, this.queryPager)
       .pipe(
+        map(item => {
+          item.resultList.forEach(el => {
+            // el.announContent = el.announContent.replace(
+            //   new RegExp('\n', 'g'),
+            //   '<br/>'
+            // );
+          });
+          return item;
+        }),
         tap(item => {
           this.queryPager.currentPage = item.currentPage;
           this.queryPager.totalCount = item.totalCount;
-          for (let i = 0; i < item.resultList.length; i++) {
-            item.resultList[i].announContent = item.resultList[
-              i
-            ].announContent.replace(/\s/g, '<br>');
-          }
         })
       );
   }

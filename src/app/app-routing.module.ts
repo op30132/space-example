@@ -29,7 +29,7 @@ const routes: Routes = [
 
 @NgModule({
   // 匯入並登記路徑
-  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top'})],
   // 匯出RouterModule使匯入routes的模組可存取路由指令
   exports: [RouterModule]
 })

@@ -6,7 +6,7 @@ import { EditMemberComponent } from './components/edit-member/edit-member.compon
 import { FormArrayComponent } from './components/form-array/form-array.component';
 
 const routes: Routes = [
-  { path: '', component: FormArrayComponent, data: { key: 'member' } },
+  { path: '', component: MemberListComponent, data: { key: 'member' } },
   { path: 'edit/:id', component: EditMemberComponent, data: { key: 'edit' } }
 ];
 

@@ -7,7 +7,7 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   // 需要加入Validator驗證
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginFormGroup = this.fb.group({
       account: [null, [Validators.required]],
-      password: [null, [Validators.required]]
+      password: [null, [Validators.required]],
     });
   }
 

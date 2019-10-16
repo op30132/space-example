@@ -28,15 +28,17 @@
               </div>
             </ng-template>
           </div> -->
-
+          <!-- pending驗證中 -->
           <div *ngIf="this.insertForm.get('account').pending">
             <div class="loading text-left">
               <i class="fas fa-spinner fa-pulse"></i>
             </div>
           </div>
+          <!-- 驗證過 -->
           <div *ngIf="this.insertForm.get('account').status=='VALID'">
             <p>此帳號無人使用</p>
           </div>
+          <!-- 驗證不通過 -->
           <div *ngIf="
               this.insertForm.get('account').dirty &&
               this.insertForm.get('account').errors
@@ -48,6 +50,9 @@
             <div *ngIf="insertForm.get('account').errors.required" class="red">
               此欄位必填
             </div>
+          </div>
+          <div *ngIf="isInvalid == false" class="red">
+            此為必填欄位
           </div>
         </div>
         <div class="form-group col-md-4">
@@ -94,7 +99,7 @@
         <div class="form-group col-md-4">
           <label for="inputState">狀態
             <select id="inputState" class="form-control" formControlName="status">
-              <option ng-selected value="Y">啟用</option>
+              <option value="Y">啟用</option>
               <option value="N">停用</option>
               <option value="D">註銷</option>
             </select>

@@ -117,6 +117,7 @@ export class EditMemberComponent implements OnInit {
       );
     }
   }
+
   // 跳出密碼修改區塊
   passwordEdit() {
     this.passwordEditStatus = true;

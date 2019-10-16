@@ -4,9 +4,10 @@ import { AnnouncementRoutingModule } from './announcement-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnnouncementListComponent } from './component/announcement-list/announcement-list.component';
 import { AnnouncementService } from './services/announcement.service';
+import { DragPracticeComponent } from './component/drag-practice/drag-practice.component';
 
 @NgModule({
-  declarations: [AnnouncementListComponent],
+  declarations: [AnnouncementListComponent,DragPracticeComponent],
   imports: [SharedModule, AnnouncementRoutingModule, NgbModule],
   providers: [AnnouncementService]
 })

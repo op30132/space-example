@@ -62,7 +62,8 @@
           <input
             type="submit"
             class="fadeIn fourth"
-            [disabled]="!loginFormGroup.valid || l"
+            [class.active]="loading"
+            [disabled]="!loginFormGroup.valid"
             value="登入"
             (click)="submitForm()"
           />

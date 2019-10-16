@@ -1,0 +1,10 @@
+
+.item{
+  min-width: 100px;
+  min-height: 100px;
+  background-color: lightcoral;
+  display: inline-block;
+  margin: 10px;
+  /* vertical-align: top; */
+
+}

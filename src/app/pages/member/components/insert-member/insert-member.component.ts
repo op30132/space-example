@@ -57,13 +57,12 @@ export class InsertMemberComponent implements OnInit {
         passwordCheck: [null, [Validators.required, Validators.maxLength(20)]],
         email: [null, [Validators.maxLength(50)]],
         contactMobileTel: [null, Validators.maxLength(20)]
-      },
-      { updateOn: 'change' }
+      }
+      // { updateOn: 'change' }
     );
     this.insertForm.controls['status'].setValue('Y', { onlySelf: true });
   }
-  // validator自訂
-  // formArray+reacive form
+
   ngOnInit() {
     // this.accountCheck$ = this.searchTerms.pipe(
     //   // startWith(this.insertForm.value),
